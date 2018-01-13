@@ -19,20 +19,20 @@ TARGET = ./build/main
 INCLUDE_DIR =\
 -I$(SRC_DIR)\
 
-LIB_DIR =
+LDFLAGS =
 
 CXX = g++
 
 CXXFLAGS = -std=c++11
 
-LDFLAGS =
+LDLIBS =
 
 all: $(TARGET)
 
 -include $(DEPS)
 
 $(TARGET) : $(BUILD_DIRS) $(OBJS) ./main.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDE_DIR) -o $@ $(OBJS) $(LIB_DIR) $(LDFLAGS) ./main.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDE_DIR) ./main.cpp $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp 
 	$(CXX) $(CXXFLAGS) $(INCLUDE_DIR) -c -MMD $< -o $@
